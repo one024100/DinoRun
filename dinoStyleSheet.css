@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+/* GLOBAL */
+	* {
+		
+		/* reset browser proportions */
+		padding: 0;
+		margin: 0;
+
+	
+	}
+
+	:root {
+
+		/* game box dimensions */
+		--gameH: 200px;
+		--gameW: 600px;
+		
+		/* dinosaur */
+		--dinoH: 80px;
+		--dinoW: 50px;
+		--dinoRestY: calc(var(--gameH) - var(--gameH) * ((var(--dinoH) / var(--gameH))) - 40px);
+		
+		/* obstacle */
+		--obstacleH: 40px;
+		--obstacleW: 65px;
+		--obstacleStartPos: calc(var(--gameW) + var(--obstacleW));
+
+	}
+
+
+
+/* CLASSES */
+
+	/* game */
+		.game {
+
+			width: var(--gameW);
+			height: var(--gameH);
+			border: black 3px solid;
+			margin: 25px auto 0 auto;
+			overflow: hidden;
+
+		}
+
+
+		/* ANIMATION */
+
+		.animate {
+
+			animation: jump 0.5s linear;
+			
+
+		}
+		
+		@keyframes jump {
+
+			0% {top: var(--dinoRestY);}
+			
+			50% {top: calc(var(--dinoRestY) - var(--dinoH) * 1.5);}
+			
+			100% {top: var(--dinoRestY);}
+
+		}
+
+		@keyframes moveObstacle {
+
+			0% {left: calc(var(--gameW) + var(--obstacleW));}
+			
+			100% {left: -80px;}
+
+		}
+
+/* CLASSES END */
+
+
+
+/* IDs */
+	
+	/* score text */
+	#scoreSpan {
+		
+		position: absolute;
+		top: calc(var(--gameH) + 40px);
+		margin: 0px auto;
+		font-family: Arial, sans-serif;
+		font-size: 25px;
+		font-weight: bold;
+		
+	}
+
+
+
+	/* obstacle */
+		#obstacle {
+
+			/* basic look/structure */
+			height: var(--obstacleH);
+			width: var(--obstacleW);
+			padding: 0;
+			margin: 0;
+			
+			/* setting position */
+			position: relative;
+			top: calc(var(--gameH) - var(--obstacleH));
+			left: var(--obstacleStartPos);
+			z-index: 3;
+			
+			/* movement of the block */
+			animation: moveObstacle 2s infinite linear;
+
+		}
+
+		#snake {
+
+			width: var(--obstacleW);
+			height: var(--obstacleH);
+
+		}
+
+
+	/* dinosaur element */
+		#dinosaur {
+
+			/* basic look/structure */
+			height: var(--dinoH);
+			width: var(--dinoW);
+			padding: 0;
+			margin: 0;
+			
+			
+			/* setting position */
+			position: relative;
+			left: 50px;
+			top: var(--dinoRestY);
+			
+
+		}
+
+		#dinoRun {
+
+			/* basic look/structure */
+			height: 80px;
+			width: 80px;
+			padding: 0;
+			margin: 0;			
+
+		}
+
+/* IDs #1 END */
